@@ -1,0 +1,16 @@
+# catalog-info.yaml
+apiVersion: backstage.io/v1beta1
+kind: Component
+metadata:
+  name: blog-service
+  description: blogging service
+  tags:
+    - python
+    - fastapi
+  links:
+    - url: https://mybrains.com
+      title: Personal Blogging site
+spec:
+  type: service
+  lifecycle: development
+  owner: guests

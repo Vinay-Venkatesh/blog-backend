@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "0.115.14"
+uvicorn = "0.35.0"
+pydantic = "2.11.7"
+psycopg = "3.2.9"
+python-dotenv = ">=1.0.0"
+[dev-packages]
+
+[requires]
+python_version = "3.13"
