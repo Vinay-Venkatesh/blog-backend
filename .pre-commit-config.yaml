@@ -1,0 +1,87 @@
+repos:
+  # Black - Python code formatter
+  - repo: https://github.com/psf/black
+    rev: 25.1.0
+    hooks:
+      - id: black
+        language_version: python3
+        stages: [pre-push]
+
+  # isort - Sorts import statements
+  - repo: https://github.com/pycqa/isort
+    rev: 6.0.1
+    hooks:
+      - id: isort
+        language_version: python3
+        stages: [pre-push]
+
+  # flake8 - Linting tool for Python
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
+        language_version: python3
+        stages: [pre-push]
+
+  # Check for large files
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+        stages: [pre-push]
+      - id: end-of-file-fixer
+        stages: [pre-push]
+      - id: trailing-whitespace
+        stages: [pre-push]
+      - id: check-yaml
+        stages: [pre-push]
+      - id: check-json
+        stages: [pre-push]
+
+  # Detect private key or credential leaks
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.27.2
+    hooks:
+      - id: gitleaks
+        stages: [pre-push]
+
+  # mypy - Optional, for static type checking
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.17.0
+    hooks:
+      - id: mypy
+        args: ["--ignore-missing-imports"]
+        language_version: python3
+        stages: [pre-push]
+
+  # execute custom script to check for conventional commit during every single commit message.
+  # - repo: local
+  #   hooks:
+  #   - id: commit-msg-check
+  #     name: Check commit message follows conventional commit format
+  #     entry: pipenv run python scripts/check_commit_msg.py
+  #     language: python
+  #     types: [commit-msg] # When to run: only during the commit-msg Git hook
+  #     stages: [commit-msg] # What to run it on: only the commit message, not files
+
+  # execute custom script to check for conventional commit once before code push.
+  - repo: local
+    hooks:
+    - id: pre-push-check-commit-msg
+      name: Check commit message follows conventional commit format
+      entry: pipenv run python scripts/check_commit_msg.py
+      language: python
+      stages: [pre-push]
+      always_run: true #  run the hook even if no files match its types or filters.
+      pass_filenames: false # not to pass any filenames as arguments to your script.
+
+  # execute custom script to check if commits are squashed.
+  - repo: local
+    hooks:
+    - id: pre-push-check-commit-squash
+      name: Check commit squashes
+      entry: pipenv run python scripts/check_squash.py
+      language: python
+      stages: [pre-push]
+      always_run: true #  run the hook even if no files match its types or filters.
+      pass_filenames: false # not to pass any filenames as arguments to your script.
