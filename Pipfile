@@ -7,9 +7,12 @@ name = "pypi"
 fastapi = "0.115.14"
 uvicorn = "0.35.0"
 pydantic = "2.11.7"
+email-validator = "*"
 psycopg = "3.2.9"
 python-dotenv = ">=1.0.0"
 SQLAlchemy = "2.0.41"
+passlib = "1.7.4"
+bcrypt = "4.3.0"
 
 [dev-packages]
 black = "==25.1.0"
