@@ -63,3 +63,14 @@ class UserResponse(BaseModel):
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+
+
+# Oauth Schema
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    # id: Optional[str] = None -> To mark this field as optional while checking
+    id: str

@@ -13,6 +13,8 @@ python-dotenv = ">=1.0.0"
 SQLAlchemy = "2.0.41"
 passlib = "1.7.4"
 bcrypt = "4.3.0"
+python-jose = "3.5.0"
+python-multipart = "0.0.20"
 
 [dev-packages]
 black = "==25.1.0"
